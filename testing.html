@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<title>Testing</title>
+    </head>
+    <link href="./libs/jquery-ui-1.13.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+      *{
+        box-sizing: border-box;
+      }
+        body{
+          height: 100vh;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .container{
+          width: 500px;
+          background-color: #f4f4f4;
+          padding: 10px;
+        }
+
+        .form-group{
+          margin: 10px 0;
+        }
+
+        .form-group label{
+          display: block;
+          margin-bottom: 10px;
+        }
+
+        .form-control{
+          width: 100%;
+        }
+
+        .justify-content-end{
+          display: flex;
+          justify-content: end;
+        }
+
+        .tooltip{
+          position: relative;
+        }
+
+        .tooltip-text{
+          width: 150px;
+          background-color: #555;
+          color: #fff;
+          padding: 5px;
+          border-radius: 6px;
+
+          margin-left: -75px;
+
+          position: absolute;
+          left: 50%;
+          bottom: 150%;
+
+          opacity: 0;
+
+          transition: opacity .3s;
+        }
+
+        .tooltip-text::after{
+          content: "";
+          border-width: 5px;
+          border-style: solid;
+          border-color: #555 transparent transparent transparent;
+
+          position: absolute;
+          left: 50%;
+          top: 100%;
+          margin-left: -2.5px;
+        }
+
+        .tooltip:hover .tooltip-text{
+          opacity: 1;
+        }
+
+
+    </style>
+    <body>
+
+      <div class="container">
+          <form action="" method="">
+            <div class="form-group">
+              <label for="link">Get Link</label>
+              <input type="text" name="link" id="link" class="form-control" value="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+            </div>
+            <div class="justify-content-end">
+              <button type="submit" class="btn tooltip">
+                <span id="mytooltip" class="tooltip-text">Copy to clipboard</span>Copy URL
+              </button>
+            </div>
+          </form>
+      </div>
+        
+    	
+    	<script src="./libs/jquery-3.6.0.min.js" type="text/javascript"></script>
+      <script src="./libs/jquery-ui-1.13.1/jquery-ui.min.js" type="text/javascript"></script>
+    	<script type="text/javascript">
+    		$(document).ready(function(){
+    			// console.log("hi");
+
+              $(".btn").click(function(e){
+                var getinput = $("#link");
+                getinput.select();
+                navigator.clipboard.writeText(getinput.val());
+                $(".tooltip-text").text("Copied :"+getinput.val().substr(0,15)+"..");
+
+                e.preventDefault();
+              });
+    		});
+    	</script>
+    </body>
+</html>
