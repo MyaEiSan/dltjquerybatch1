@@ -4,95 +4,112 @@
     	<title>Testing</title>
     </head>
     <link href="./libs/jquery-ui-1.13.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style type="text/css">
-      *{
-        box-sizing: border-box;
+      body{
+        height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
-        body{
-          height: 100vh;
 
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .container{
-          width: 500px;
-          background-color: #f4f4f4;
-          padding: 10px;
-        }
+      .container{
+        width: 700px;
+      }
 
-        .form-group{
-          margin: 10px 0;
-        }
+      .browserpannel{
+        border: 3px solid #f4f4f4;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
 
-        .form-group label{
-          display: block;
-          margin-bottom: 10px;
-        }
+      .tabbar{
+        background-color: #f1f1f1;
+        padding: 10px;
+        border-top-left-radius: 4px;
+        border-top-left-radius: 4px;
+      }
 
-        .form-control{
-          width: 100%;
-        }
+      .dot{
+        width: 10px;
+        height: 10px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+      }
 
-        .justify-content-end{
-          display: flex;
-          justify-content: end;
-        }
+      .content{
+        padding: 20px;
+      }
 
-        .tooltip{
-          position: relative;
-        }
+      ul{
+        list-style: none;
+      }
 
-        .tooltip-text{
-          width: 150px;
-          background-color: #555;
-          color: #fff;
-          padding: 5px;
-          border-radius: 6px;
+      .bigcap::before{
+        content: '\25B6';
+        font-family: 'Font Awesome 5 Free';
+        margin-right: 6px;
+        display: inline-block;
+      }
 
-          margin-left: -75px;
+      .bigcap.godown::before{
+        transform: rotate(90deg);
+      }
 
-          position: absolute;
-          left: 50%;
-          bottom: 150%;
+      .nested{
+        display: none;
+      }
 
-          opacity: 0;
-
-          transition: opacity .3s;
-        }
-
-        .tooltip-text::after{
-          content: "";
-          border-width: 5px;
-          border-style: solid;
-          border-color: #555 transparent transparent transparent;
-
-          position: absolute;
-          left: 50%;
-          top: 100%;
-          margin-left: -2.5px;
-        }
-
-        .tooltip:hover .tooltip-text{
-          opacity: 1;
-        }
-
-
+      .active{
+        display: block;
+      }
     </style>
     <body>
 
       <div class="container">
-          <form action="" method="">
-            <div class="form-group">
-              <label for="link">Get Link</label>
-              <input type="text" name="link" id="link" class="form-control" value="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+          <div class="browserpannel">
+            <div class="tabbar">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
             </div>
-            <div class="justify-content-end">
-              <button type="submit" class="btn tooltip">
-                <span id="mytooltip" class="tooltip-text">Copy to clipboard</span>Copy URL
-              </button>
+            <div class="content">
+              <h3>MS.July</h3>
+              <p>Chief Technology Officer</p>
+              <ul>
+                <li>
+                  <span class="bigcap"></span>Summary Bio
+                  <ul class="nested">
+                    <li>Age : 35</li>
+                    <li>Marial : Married</li>
+                    <li>Nationality : Japanese</li>
+                  </ul>
+                  
+                </li>
+                <li>
+                  <span class="bigcap"></span>Working Experiences
+                  <ul class="nested">
+                    <li>
+                      <span class="bigcap"></span>2020
+                      <ul class="nested">
+                        <li>2020 - Project Director AT SUDO Technology Co.,Ltd</li>
+                        <li>2018 - Project Director AT BARBU Technology Co.,Ltd</li>
+                        <li>
+                          <span class="bigcap"></span>2015
+                          <ul class="nested">
+                            <li>2013 - Project Director AT YUKI Technology Co.,Ltd</li>
+                            <li>2010 - Project Director AT MuLIE Technology Co.,Ltd</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
             </div>
-          </form>
+          </div>
       </div>
         
     	
@@ -102,14 +119,10 @@
     		$(document).ready(function(){
     			// console.log("hi");
 
-              $(".btn").click(function(e){
-                var getinput = $("#link");
-                getinput.select();
-                navigator.clipboard.writeText(getinput.val());
-                $(".tooltip-text").text("Copied :"+getinput.val().substr(0,15)+"..");
-
-                e.preventDefault();
-              });
+          $(".bigcap").click(function(){
+            $(this).toggleClass("godown");
+            $(this).siblings().toggleClass("active");
+          })
     		});
     	</script>
     </body>
